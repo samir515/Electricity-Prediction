@@ -2,16 +2,23 @@
 LSTM Model for Electricity Demand Prediction
 Implements a deep learning model using LSTM layers for time-series forecasting.
 """
-
 import numpy as np
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras.models import Sequential, load_model
-from tensorflow.keras.layers import LSTM, Dense, Dropout, BatchNormalization
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
-from tensorflow.keras.optimizers import Adam
 import os
 import joblib
+
+# Try to import TensorFlow, provide fallback if not available
+try:
+    import tensorflow as tf
+    from tensorflow import keras
+    from tensorflow.keras.models import Sequential, load_model
+    from tensorflow.keras.layers import LSTM, Dense, Dropout, BatchNormalization
+    from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
+    from tensorflow.keras.optimizers import Adam
+    TENSORFLOW_AVAILABLE = True
+except ImportError:
+    TENSORFLOW_AVAILABLE = False
+    print("Warning: TensorFlow not available. Using lightweight fallback mode.")
+
 
 
 class ElectricityLSTMModel:
